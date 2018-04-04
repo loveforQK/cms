@@ -34,7 +34,7 @@ server{
 	     include        fastcgi_params;
 	     fastcgi_pass   127.0.0.1:9000;
 	     fastcgi_index  index.php;
-	     fastcgi_param  SCRIPT_FILENAME /opt/htdocs/项目/api/web/index.php;
+	     fastcgi_param  SCRIPT_FILENAME /opt/htdocs/项目/admin/web/index.php;
 	}
 }
 ```
