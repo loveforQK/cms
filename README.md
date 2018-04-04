@@ -8,30 +8,33 @@
 admin/views/template（可根据yii框架模板目录设置调整）
 # Nginx配置
 <code>
-server {            
-        listen       80;
-        server_name  域名;
-        root  /opt/htdocs/项目/html;
-        index index.html index.htm;
-        
+server{
+	listen       80;
+
+	server_name  域名;
+
+	root  /opt/htdocs/项目/html;
+
+	index index.html index.htm;
+
 	location /admin/assets {
-                alias /opt/htdocs/项目/admin/web/assets;
-        }
+		alias /opt/htdocs/项目/admin/web/assets;
+	}
 
-        location /admin/static {
-                alias /opt/htdocs/项目/admin/web/static;
-        }
+	location /admin/static {
+		alias /opt/htdocs/项目/admin/web/static;
+	}
 
-        location /admin {
-             rewrite ^/(.*)$ /index.php/$1 last;
-        }
+	location /admin {
+	     rewrite ^/(.*)$ /index.php/$1 last;
+	}
 
-        location /index.php {
-             root /opt/htdocs/项目/api/web;
-             include        fastcgi_params;
-             fastcgi_pass   127.0.0.1:9000;
-             fastcgi_index  index.php;
-             fastcgi_param  SCRIPT_FILENAME /opt/htdocs/项目/api/web/index.php;
-        }
+	location /index.php {
+	     root /opt/htdocs/项目/api/web;
+	     include        fastcgi_params;
+	     fastcgi_pass   127.0.0.1:9000;
+	     fastcgi_index  index.php;
+	     fastcgi_param  SCRIPT_FILENAME /opt/htdocs/项目/api/web/index.php;
+	}
 }
 </code>
