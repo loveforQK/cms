@@ -7,11 +7,11 @@
 # 模板开发目录
 admin/views/template（可根据yii框架模板目录设置调整）
 # Nginx配置
-<code>
+```
 server{
-	listen       80;
+	listen 80;
 
-	server_name  域名;
+	server_name 域名;
 
 	root  /opt/htdocs/项目/html;
 
@@ -37,4 +37,4 @@ server{
 	     fastcgi_param  SCRIPT_FILENAME /opt/htdocs/项目/api/web/index.php;
 	}
 }
-</code>
+```
