@@ -2,9 +2,9 @@
 namespace app\modules\admin\components;
 
 use Yii;
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class Tools extends Object{
+class Tools extends BaseObject{
     /**
      * 获取用户IP地址
      */

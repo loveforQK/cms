@@ -21,11 +21,7 @@ class SysLog extends ActiveRecord{
     public static $typelist = [
         1=>'登录',
         2=>'动态',
-        3=>'页面',
-        4=>'系统',
         5=>'管理员',
-        6=>'招聘',
-        7=>'鉴定人员',
     ];
 
     public static function tableName(){

@@ -2,7 +2,6 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\search\SearchNews;
 use app\models\SysNews;
 use app\modules\admin\components\Template;
 use Yii;
@@ -11,10 +10,8 @@ use app\models\SysLog;
 
 class NewsController extends BaseController{
     //新闻列表
-    public function actionIndex($type = null){
-        $model = new SearchNews();
-        $model->type = empty($type)?SysNews::TYPE_BUSINESS:$type;
-        return $this->render('index',['model'=>$model]);
+    public function actionIndex(){
+        return $this->render('index');
     }
 
     //发布新闻
@@ -45,20 +42,16 @@ class NewsController extends BaseController{
     }
 
     //移除
-    public function actionDel($id = null,$type = null){
+    public function actionDel($id = null){
         Yii::$app->response->format = 'json';
         if(empty($id) || empty($type)){
             return ['code'=>0];
         }
 
         Yii::$app->db->createCommand()->delete(SysNews::tableName(),'id=:id',[':id'=>$id])->execute();
-        SysLog::add('删除'.SysNews::$typelist[$type],2,['id'=>$id,'type'=>$type]);
+        SysLog::add('删除'.SysNews::$typelist[$type],2,['id'=>$id]);
         $template = new Template();
-        if($type == SysNews::TYPE_BUSINESS){
-            $template->delpage('business_detail',$id);
-        }else{
-            $template->delpage('industry_detail',$id);
-        }
+        $template->delpage('business_detail',$id);
         return ['code'=>1];
     }
 }

@@ -26,28 +26,13 @@ $maintitle = '管理中心';
         <ul class="nav navbar-nav">
             <li><a class="all-change" href="/admin/default"><i class="icon-dashboard"></i>首页</a></li>
             <li>
-                <a class="all-change" href="#"><i class="icon-globe"></i>动态</a>
-                <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="btnGroupDrop1">
-                    <li><a href="/admin/news?type=<?= SysNews::TYPE_BUSINESS ?>">机构动态</a></li>
-                    <li><a href="/admin/news?type=<?= SysNews::TYPE_INDUSTRY ?>">行业新闻</a></li>
-                </ul>
+                <a class="all-change" href="/admin/news"><i class="icon-globe"></i>文章</a>
             </li>
             <li class="btn-group" role="group">
-                <a class="all-change" href="/admin/zhaopin"><i class="icon-github-alt"></i>招聘</a>
+                <a class="all-change" href="/admin/user"><i class="icon-user"></i>管理员</a>
             </li>
             <li class="btn-group" role="group">
-                <a class="all-change" href="/admin/appraisal"><i class="icon-group"></i>鉴定人员</a>
-            </li>
-            <li class="btn-group" role="group">
-                <a class="all-change" href="/admin/page"><i class="icon-file-alt"></i>页面</a>
-            </li>
-            <li class="btn-group" role="group">
-                <a class="all-change" href="javascript:;"><i class="icon-cogs"></i>系统</a>
-                <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="btnGroupDrop1">
-                    <li><a href="/admin/config">站点设置</a></li>
-                    <li><a href="/admin/user">管理员</a></li>
-                    <li><a href="/admin/log">系统日志</a></li>
-                </ul>
+                <a class="all-change" href="/admin/log"><i class="icon-list"></i>系统日志</a>
             </li>
         </ul>
         <ul class="nav navbar-nav pull-right">

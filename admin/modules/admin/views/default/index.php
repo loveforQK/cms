@@ -3,8 +3,7 @@ use app\models\SysNews;
 use app\models\SysLog;
 
 $this->title = '控制面板';
-$business = SysNews::find()->select('title,pubtime')->where('type='.SysNews::TYPE_BUSINESS)->orderBy('pubtime desc')->limit(10)->asArray()->all();
-$industry = SysNews::find()->select('title,pubtime')->where('type='.SysNews::TYPE_INDUSTRY)->orderBy('pubtime desc')->limit(10)->asArray()->all();
+$business = SysNews::find()->select('title,pubtime')->orderBy('pubtime desc')->limit(10)->asArray()->all();
 $log = SysLog::find()->select('name,addtime')->where('type<>1')->orderBy('addtime desc')->limit(10)->asArray()->all();
 ?>
 <ol class="breadcrumb">
@@ -14,7 +13,7 @@ $log = SysLog::find()->select('name,addtime')->where('type<>1')->orderBy('addtim
 <div class="row">
     <div class="col-lg-4">
         <div class="panel panel-default">
-            <div class="panel-heading">最新企业新闻<a class="pull-right" href="/admin/news?type=1">更多</a></div>
+            <div class="panel-heading">最新文章<a class="pull-right" href="/admin/news">更多</a></div>
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr><th width="70%">标题</th><th width="30%">发布时间</th></tr>
@@ -25,32 +24,6 @@ $log = SysLog::find()->select('name,addtime')->where('type<>1')->orderBy('addtim
                 <?php } ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">最新行业新闻<a class="pull-right" href="/admin/news?type=2">更多</a></div>
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr><th width="70%">标题</th><th width="30%">发布时间</th></tr>
-                </thead>
-                <tbody>
-                <?php foreach($industry as $val){ ?>
-                    <tr><td><?= $val['title'] ?></td><td><?= $val['pubtime'] ?></td></tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">站点资源生成发布</div>
-            <div class="panel-body">
-                <div class="build_result"></div>
-            </div>
-            <div class="panel-footer clearfix">
-                <button class="btn btn-info btn-build pull-right">一键生成</button>
-            </div>
         </div>
     </div>
     <div class="col-lg-4">
@@ -66,6 +39,17 @@ $log = SysLog::find()->select('name,addtime')->where('type<>1')->orderBy('addtim
                 <?php } ?>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">站点资源生成发布</div>
+            <div class="panel-body">
+                <div class="build_result"></div>
+            </div>
+            <div class="panel-footer clearfix">
+                <button class="btn btn-info btn-build pull-right">一键生成</button>
+            </div>
         </div>
     </div>
     <div class="col-lg-4">

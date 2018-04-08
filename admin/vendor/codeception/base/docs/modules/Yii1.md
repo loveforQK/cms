@@ -107,7 +107,6 @@ modules:
         - \Helper\Acceptance
 ```
 
-
 ## Actions
 
 ### _findElements
@@ -247,12 +246,12 @@ $I->amOnPage('/');
 $I->amOnPage('/register');
 ```
 
- * `param` $page
+ * `param string` $page
 
 
 ### attachFile
  
-Attaches a file relative to the Codeception data directory to the given file upload field.
+Attaches a file relative to the Codeception `_data` directory to the given file upload field.
 
 ``` php
 <?php
@@ -357,8 +356,8 @@ But will ignore strings like:
 
 For checking the raw source code, use `seeInSource()`.
 
- * `param`      $text
- * `param null` $selector
+ * `param string` $text
+ * `param string` $selector optional
 
 
 ### dontSeeCheckboxIsChecked
@@ -397,7 +396,7 @@ $I->dontSeeCurrentUrlEquals('/');
 ?>
 ```
 
- * `param` $uri
+ * `param string` $uri
 
 
 ### dontSeeCurrentUrlMatches
@@ -411,7 +410,7 @@ $I->dontSeeCurrentUrlMatches('~$/users/(\d+)~');
 ?>
 ```
 
- * `param` $uri
+ * `param string` $uri
 
 
 ### dontSeeElement
@@ -442,7 +441,7 @@ $I->dontSeeInCurrentUrl('/users/');
 ?>
 ```
 
- * `param` $uri
+ * `param string` $uri
 
 
 ### dontSeeInField
@@ -541,8 +540,8 @@ $I->dontSeeLink('Checkout now', '/store/cart.php');
 ?>
 ```
 
- * `param` $text
- * `param null` $url
+ * `param string` $text
+ * `param string` $url optional
 
 
 ### dontSeeOptionIsSelected
@@ -607,7 +606,6 @@ $I->grabAttributeFrom('#tooltip', 'title');
 ?>
 ```
 
-
  * `param` $cssOrXpath
  * `param` $attribute
 
@@ -625,7 +623,7 @@ You can set additional cookie params like `domain`, `path` in array passed as la
 
 ### grabFromCurrentUrl
  
-Executes the given regular expression against the current URI and returns the first match.
+Executes the given regular expression against the current URI and returns the first capturing group.
 If no parameters are provided, the full URI is returned.
 
 ``` php
@@ -635,7 +633,7 @@ $uri = $I->grabFromCurrentUrl();
 ?>
 ```
 
- * `param null` $uri
+ * `param string` $uri optional
 
 
 
@@ -707,8 +705,19 @@ subsequent HTTP requests through PhpBrowser.
 Example:
 ```php
 <?php
-$I->setHeader('X-Requested-With', 'Codeception');
+$I->haveHttpHeader('X-Requested-With', 'Codeception');
 $I->amOnPage('test-headers.php');
+?>
+```
+
+To use special chars in Header Key use HTML Character Entities:
+Example:
+Header with underscore - 'Client_Id'
+should be represented as - 'Client&#x0005F;Id' or 'Client&#95;Id'
+
+```php
+<?php
+$I->haveHttpHeader('Client&#95;Id', 'Codeception');
 ?>
 ```
 
@@ -763,8 +772,8 @@ But will *not* be true for strings like:
 
 For checking the raw source code, use `seeInSource()`.
 
- * `param`      $text
- * `param null` $selector
+ * `param string` $text
+ * `param string` $selector optional
 
 
 ### seeCheckboxIsChecked
@@ -809,7 +818,7 @@ $I->seeCurrentUrlEquals('/');
 ?>
 ```
 
- * `param` $uri
+ * `param string` $uri
 
 
 ### seeCurrentUrlMatches
@@ -823,7 +832,7 @@ $I->seeCurrentUrlMatches('~$/users/(\d+)~');
 ?>
 ```
 
- * `param` $uri
+ * `param string` $uri
 
 
 ### seeElement
@@ -861,13 +870,13 @@ $I->seeInCurrentUrl('/users/');
 ?>
 ```
 
- * `param` $uri
+ * `param string` $uri
 
 
 ### seeInField
  
-Checks that the given input field or textarea contains the given value.
-For fuzzy locators, fields are matched by label text, the "name" attribute, CSS, and XPath.
+Checks that the given input field or textarea *equals* (i.e. not just contains) the given value.
+Fields are matched by label text, the "name" attribute, CSS, or XPath.
 
 ``` php
 <?php
@@ -986,8 +995,8 @@ $I->seeLink('Logout','/logout'); // matches <a href="/logout">Logout</a>
 ?>
 ```
 
- * `param`      $text
- * `param null` $url
+ * `param string` $text
+ * `param string` $url optional
 
 
 ### seeNumberOfElements
@@ -997,13 +1006,11 @@ Checks that there are a certain number of elements matched by the given locator 
 ``` php
 <?php
 $I->seeNumberOfElements('tr', 10);
-$I->seeNumberOfElements('tr', [0,10]); //between 0 and 10 elements
+$I->seeNumberOfElements('tr', [0,10]); // between 0 and 10 elements
 ?>
 ```
  * `param` $selector
- * `param mixed` $expected :
-- string: strict number
-- array: range of numbers [0,10]
+ * `param mixed` $expected int or int[]
 
 
 ### seeOptionIsSelected
@@ -1347,4 +1354,4 @@ $I->uncheckOption('#notify');
 
  * `param` $option
 
-<p>&nbsp;</p><div class="alert alert-warning">Module reference is taken from the source code. <a href="https://github.com/Codeception/Codeception/tree/2.3/src/Codeception/Module/Yii1.php">Help us to improve documentation. Edit module reference</a></div>
+<p>&nbsp;</p><div class="alert alert-warning">Module reference is taken from the source code. <a href="https://github.com/Codeception/Codeception/tree/2.4/src/Codeception/Module/Yii1.php">Help us to improve documentation. Edit module reference</a></div>
